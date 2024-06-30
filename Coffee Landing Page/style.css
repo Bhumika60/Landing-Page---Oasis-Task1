@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    border: none;
+    outline: 0;
+    text-decoration: 0;
+    list-style: none;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100%;
+    width: 100%;
+    font-size: 16px;
+    background-color: #4f8b69;
+}
+
+:root {
+    --border-color: #fff5;
+    --coffee-image-width: 480px;
+    --calculate: calc(3/2);
+}
+
+header {
+    display: grid;
+    grid-template-columns: 80px 1fr calc(var(--coffee-image-width) * var(--calculate));
+    grid-template-rows: 80px;
+    position: relative;
+    z-index: 10;
+    background-color: #ffffff34;
+}
+
+header .logo img {
+    width: 80%;
+}
+
+header .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header nav a {
+    color: #000;
+    font-weight: 400;
+}
+
+header nav ul {
+    height: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 30px;
+    padding-right: 30px;
+}
+
+.slider {
+    margin-top: -80px;
+    overflow: hidden;
+    width: 100%;
+    height: 100vh
+}
+
+.slider .list__container {
+    height: 100%;
+    position: relative;
+}
+
+.slider .list__container::before {
+    content: '';
+    position: absolute;
+    width: var(--coffee-image-width);
+    height: 100%;
+    top: 0;
+    left: calc(100% - calc(var(--coffee-image-width) * var(--calculate)));
+    z-index: 10;
+    pointer-events: 0;
+}
+
+.slider .list__container::after {
+    content: '';
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    background-color: red;
+    width: 400px;
+    height: 300px;
+    z-index: 10;
+    pointer-events: none;
+    border-radius: 20px 50px 110px 230px;
+    filter: blur(150px);
+    opacity: .7;
+}
+
+.list__container .item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.item .image {
+    width: var(--coffee-image-width);
+    height: 100%;
+    position: absolute;
+    top: 65px;
+    left: calc(100% - calc(var(--coffee-image-width) * var(--calculate)));
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    font-weight: 600;
+}
+
+.item .image img {
+    width: 75%;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 15px 50px #9b131355);
+}
+
+.image figcaption {
+    font-family: 'Aboreto';
+    font-weight: bold;
+    font-size: 1.3em;
+    text-align: right;
+    margin-bottom: 30px;
+    width: 70%;
+    padding-bottom: 10px;
+}
+
+.item .main__content {
+    height: 100%;
+    display: grid;
+    grid-template-columns: calc(100% - calc(var(--coffee-image-width) * var(--calculate)));
+}
+
+.main__content .content {
+    padding: 140px 15px 15px 60px;
+}
+
+.main__content .content h2 {
+    font-size: 4.1rem;
+    font-family: 'Aboreto';
+    font-weight: bold;
+}
+
+.content .price {
+    font-family: 'Aboreto';
+    font-size: 2.8rem;
+    margin: 15px 0;
+}
+
+.content .add-to-cart {
+    background-color: #4f8b69;
+    color: #fff;
+    padding: 10px 30px;
+    font-family: 'Poppins';
+    font-size: 17px;
+    font-weight: 500;
+    border-radius: 50px 80px 30px 50px;
+    margin-top: 20px;
+}
+
+.arrows {
+    position: absolute;
+    bottom: 20px;
+    width: calc(100% - calc(var(--coffee-image-width) * var(--calculate)));
+    display: grid;
+    grid-template-columns: repeat(2, 50px);
+    grid-template-rows: 50px;
+    justify-content: end;
+    gap: 10px;
+}
+
+.arrows button {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 40%;
+    color: #fff;
+    font-family: monospace;
+    font-size: large;
+    font-weight: bold;
+    line-height: 0;
+    box-shadow: 0 10px 40px #5555;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.arrows button:hover {
+    background-color: rgba(238, 238, 238, 0.333);
+}
+
+.list__container .item {
+    display: none;
+}
+
+.item.active,
+.item.other_1,
+.item.other_2 {
+    display: block;
+}
+
+.item.active {
+    z-index: 2;
+}
+
+.item.other_1,
+.item.other_2 {
+    pointer-events: none;
+}
+
+.main__content {
+    animation: displayAnimation 1s ease-in-out 1 forwards;
+}
+
+@keyframes displayAnimation {
+    from {
+        clip-path: circle(0% at 70% 50%);
+    }
+
+    to {
+        clip-path: circle(100% at 70% 50%);
+    }
+}
+
+.next .item.other_1 {
+    z-index: 1;
+}
+
+.next .item .image img,
+.next .item .image figcaption {
+    animation: animeNextEffect .5s ease-in-out 1 forwards;
+}
+
+@keyframes animeNextEffect {
+    from {
+        transform: translateX(calc(var(--transform-from)));
+    }
+
+    to {
+        transform: translateX(calc(var(--transform-from) - var(--coffee-image-width)));
+    }
+}
+
+.next .item.active .image {
+    --transform-from: var(--coffee-image-width);
+}
+
+.next .item.other_1 .image {
+    z-index: 3;
+    --transform-from: 0px;
+    overflow: hidden;
+}
+.next .item.other_2 .image{
+    z-index: 3;
+    --transform-from: calc(var(--coffee-image-width) * 2);
+}
+.arrows{
+    z-index: 10;
+}
+
+.prev .list__container .item .image img,
+.prev .list__container .item .image figcaption{
+    animation: animEffectPrev 0.5s ease-in-out 1 forwards;
+}
+@keyframes animEffectPrev{
+    from{
+        transform: translateX(calc(var(--transform-from)));
+    }to{
+        transform: translateX(calc(var(--transform-from) + var(--coffee-image-width)));
+    }
+}
+
+.prev .list__container .item.active .image{
+    --transform-from: calc(var(--coffee-image-width) * - 1);
+    overflow: hidden;
+}
+.prev .list__container .item.other_1 .image{
+    --transform-from: 0px;
+    z-index: 3;
+}
+.prev .list__container .item.other_2 .image{
+    z-index: 3;
+    --transform-from: var(--coffee-image-width);
+}
+.prev .list__container .item.other_2 .main__content{
+    opacity: 0;
+}
+
+@media screen and (max-width: 1300px){
+    :root{
+        --calculate: 1;
+        --coffee-image-width: 400px; 
+    }
+    .main__content .content h2{
+        font-size: 2.9rem;
+    }
+}
+@media screen and (max-width: 770px){
+    .item .image{
+        width: 100%;
+        left: 0;
+        justify-content: center;
+    }
+    .item .image figcaption{
+        color: #fff;
+        width: 100%;
+        text-align: center;
+    }
+    .main__content .content{
+        display: none;
+    }
+    .arrows{
+        left: 50%;
+        justify-content: center;
+    }
+}
